@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Data Master : Department</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div align="center">
+            <h1>Department List</h1>
+            <table border="1" cellpadding="8" style="font-size: 20px;">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>                        
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="as : ${departments}">
+                        <td th:text="${as.id}"></td>
+                        <td th:text="${as.name}"></td>
+                        <td>
+                            <a th:href="@{/editDepartment/{Id}(Id=${as.id})}" style="text-decoration: none;font-size: 22px;">Edit</a>
+                            &nbsp;
+                            <a th:href="@{/deleteDepartment/{Id}(Id=${as.id})}" style="text-decoration: none;font-size: 22px;">Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+            <form action="#" th:action="@{/saveDepartment}" th:object="${department}" method="post">
+                <table border="0" cellpadding="3" style="text-align: left;font-size: 18px;" >
+                    <tr>
+                        <td colspan="2">
+                            <h4>Create New Department :</h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>      
+                    </tr>
+                    
+                    <tr>
+                        <td><input type="text" th:field="*{id}" /></td>
+                        <td><input type="text" th:field="*{name}" /></td>
+                    </tr>                           
+                    <tr>
+                        <td>
+                            <button style="font-size: 20px;" type="submit">Save</button> 
+                            <a style="text-decoration: none;font-size: 22px;"  href="/">Home</a>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </body>
+</html>
